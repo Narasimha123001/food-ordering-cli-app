@@ -1,6 +1,3 @@
-Here's the updated `README.md` file:
-
-```markdown
 # Foodie CLI Application
 
 ## Overview
