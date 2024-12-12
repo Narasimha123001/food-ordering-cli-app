@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class CustomerRepository {
 
-    private List<Customer> customerList;
+    private final List<Customer> customerList;
 
     public CustomerRepository() {
         CSVReader csvReader = new CSVReader();
