@@ -1,0 +1,45 @@
+package com.JavaProject.foodiecliapp.repository;
+
+import com.JavaProject.foodiecliapp.model.Dish;
+import com.JavaProject.foodiecliapp.util.CSVReader;
+
+import java.util.List;
+import java.util.Optional;
+
+public class DishRepository {
+
+    private  List<Dish> dishList;
+
+    public DishRepository() {
+        CSVReader csvReader = new CSVReader();
+        this.dishList =csvReader.readDishesFromCsv();
+    }
+
+    public Dish saveDish(Dish dish){
+        this.dishList.add(dish);
+        return dish;
+    }
+
+    public Optional<Dish> getDishById(String id){
+        return this.dishList.stream()
+                .filter(dish -> dish.getId().equals(id)).findFirst();
+    }
+
+    public Dish updateDish(Dish dishToBeUpdated){
+        Optional<Dish> optionalDish = this.dishList.stream()
+                .filter(dish -> dish.getId().equals(dishToBeUpdated.getId()))
+                .findFirst()
+                .map(dish -> {
+                    dish.setId(dishToBeUpdated.getId());
+                    dish.setName(dishToBeUpdated.getName());
+                    dish.setDescription(dishToBeUpdated.getDescription());
+                    dish.setDescription(dishToBeUpdated.getDescription());
+                    return dish;
+                });
+        return optionalDish.orElse(null);
+    }
+
+    public void deleteDish(Dish dish){
+        this.dishList.remove(dish);
+    }
+}
