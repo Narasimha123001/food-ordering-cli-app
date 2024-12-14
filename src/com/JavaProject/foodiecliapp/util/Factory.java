@@ -12,6 +12,10 @@ import com.JavaProject.foodiecliapp.service.RestaurantServiceImpl;
 
 public class Factory {
 
+    public static CSVReader getCsvReader(){
+        return new CSVReader();
+    }
+
     public static CustomerRepository customerRepository(){
         return new CustomerRepository();
     }
