@@ -1,6 +1,7 @@
 package com.JavaProject.foodiecliapp.controller;
 
 import com.JavaProject.foodiecliapp.exceptions.CustomerExitsException;
+import com.JavaProject.foodiecliapp.exceptions.CustomerNotFoundException;
 import com.JavaProject.foodiecliapp.model.Customer;
 import com.JavaProject.foodiecliapp.service.CustomerServiceImpl;
 
@@ -21,5 +22,7 @@ public class CustomerController {
     public List<Customer> getAllCustomerList() {
         return this.customerService.getAllCustomerList();
     }
-
+    public Customer getCustomerById(String id) throws CustomerNotFoundException {
+        return this.customerService.getCustomerById(id);
+    }
 }
