@@ -19,6 +19,9 @@ public class DishRepository {
         this.dishList.add(dish);
         return dish;
     }
+    public  List<Dish> getDishList(){
+        return this.dishList;
+    }
 
     public Optional<Dish> getDishById(String id){
         return this.dishList.stream()
