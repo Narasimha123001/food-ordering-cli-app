@@ -1,7 +1,7 @@
 package com.JavaProject.foodiecliapp.repository;
 
 import com.JavaProject.foodiecliapp.model.Restaurant;
-import com.JavaProject.foodiecliapp.util.CSVReader;
+import com.JavaProject.foodiecliapp.util.Factory;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +11,7 @@ public class RestaurantRepository {
     private final List<Restaurant> restaurantList;
 
     public RestaurantRepository() {
-        CSVReader csvReader = new CSVReader();
-        this.restaurantList = csvReader.readRestaurantsFromCsv();
+        this.restaurantList = Factory.getCsvReader().readRestaurantsFromCsv();
     }
 
     public List<Restaurant> getRestaurantList() {
