@@ -1,6 +1,7 @@
 package com.JavaProject.foodiecliapp.service;
 
 import com.JavaProject.foodiecliapp.exceptions.CustomerExitsException;
+import com.JavaProject.foodiecliapp.exceptions.CustomerNotFoundException;
 import com.JavaProject.foodiecliapp.model.Customer;
 import com.JavaProject.foodiecliapp.repository.CustomerRepository;
 
@@ -27,6 +28,12 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public List<Customer> getAllCustomerList() {
         return this.customerRepository.getAllCustomerList();
+    }
+    public Customer getCustomerById(String id)throws CustomerNotFoundException{
+        Optional<Customer> optionalCustomer = this.customerRepository.findCustomerById(id);
+        if(optionalCustomer.isEmpty())
+            throw new CustomerNotFoundException("Customer not present with this: "+id+ "please try with correct id! fool");
+        return optionalCustomer.get();
     }
 
 }
