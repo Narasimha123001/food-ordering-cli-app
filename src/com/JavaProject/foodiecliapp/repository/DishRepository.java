@@ -2,6 +2,7 @@ package com.JavaProject.foodiecliapp.repository;
 
 import com.JavaProject.foodiecliapp.model.Dish;
 import com.JavaProject.foodiecliapp.util.CSVReader;
+import com.JavaProject.foodiecliapp.util.Factory;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +12,7 @@ public class DishRepository {
     private  List<Dish> dishList;
 
     public DishRepository() {
-        CSVReader csvReader = new CSVReader();
-        this.dishList =csvReader.readDishesFromCsv();
+        this.dishList = Factory.getCsvReader().readDishesFromCsv();
     }
 
     public Dish saveDish(Dish dish){
