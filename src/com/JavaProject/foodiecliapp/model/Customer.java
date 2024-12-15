@@ -19,32 +19,36 @@ public class Customer {
         return id;
     }
 
-    public void setId(String id) {
+    public Customer setId(String id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Customer setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Customer setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getPassword() {
         return Password;
     }
 
-    public void setPassword(String password) {
+    public Customer setPassword(String password) {
         Password = password;
+        return this;
     }
 
     @Override
