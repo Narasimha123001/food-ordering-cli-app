@@ -16,6 +16,9 @@ public class Factory {
         return new CSVReader();
     }
 
+    public static CSVWriter getCsvWriter(){
+        return new CSVWriter();
+    }
     public static CustomerRepository customerRepository(){
         return new CustomerRepository();
     }
