@@ -7,7 +7,6 @@ import com.JavaProject.foodiecliapp.model.Restaurant;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,10 +26,10 @@ public class CSVReader {
                 String[] data = line.split(csvSplitBy);
                 //id,name,email,password
                 Customer customer = new Customer();
-                customer.setId(data[0]);
-                customer.setName(data[1]);
-                customer.setEmail(data[2]);
-                customer.setPassword(data[3]);
+                customer.setId(data[0])
+                        .setName(data[1])
+                        .setEmail(data[2])
+                        .setPassword(data[3]);
                 customerList.add(customer);
             }
         } catch (IOException e) {
