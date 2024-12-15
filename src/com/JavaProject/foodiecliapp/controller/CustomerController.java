@@ -1,6 +1,6 @@
 package com.JavaProject.foodiecliapp.controller;
 
-import com.JavaProject.foodiecliapp.exceptions.CustomerExitsException;
+import com.JavaProject.foodiecliapp.exceptions.CustomerAlreadyExitsException;
 import com.JavaProject.foodiecliapp.exceptions.CustomerNotFoundException;
 import com.JavaProject.foodiecliapp.model.Customer;
 import com.JavaProject.foodiecliapp.service.CustomerServiceImpl;
@@ -15,7 +15,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    public Customer save(Customer customer) throws CustomerExitsException {
+    public Customer save(Customer customer) throws CustomerAlreadyExitsException {
         return this.customerService.save(customer);
     }
 
@@ -24,5 +24,11 @@ public class CustomerController {
     }
     public Customer getCustomerById(String id) throws CustomerNotFoundException {
         return this.customerService.getCustomerById(id);
+    }
+    public Customer updateCustomer(Customer customerToBeUpdate) throws CustomerNotFoundException{
+        return this.customerService.updateCustomer(customerToBeUpdate);
+    }
+    public void deleteCustomer(String id) throws CustomerNotFoundException{
+        this.customerService.deleteCustomer(id);
     }
 }
