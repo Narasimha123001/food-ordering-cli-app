@@ -1,9 +1,11 @@
 package com.JavaProject.foodiecliapp.ui;
 
 import com.JavaProject.foodiecliapp.controller.CustomerController;
-import com.JavaProject.foodiecliapp.exceptions.CustomerExitsException;
+import com.JavaProject.foodiecliapp.exceptions.CustomerAlreadyExitsException;
+import com.JavaProject.foodiecliapp.exceptions.CustomerNotFoundException;
 import com.JavaProject.foodiecliapp.model.Customer;
 import com.JavaProject.foodiecliapp.util.Factory;
+
 
 import java.util.List;
 import java.util.Scanner;
@@ -39,11 +41,12 @@ public class CustomerMenu extends Menu{
                 switch (input) {
                     case 1 -> customerRegisterForm();
                     case 4 -> displayAllCustomers();
+                    case 5 -> customerUpdateForm();
+                    case 6 -> deleteCustomerForm();
                    /* case 2 -> customerLoginForm();
                     case 3 -> customerSearchForm();
-                    case 4 -> displayAllCustomers();
-                    case 5 -> customerUpdateForm();
-                    case 6 -> deleteCustomerForm();*/
+
+                    */
                     case 7 -> {
                         System.out.println("Thank you , See you again !");
                         super.displayMenu();
@@ -55,6 +58,50 @@ public class CustomerMenu extends Menu{
         } catch (Exception e) {
             System.out.println("Some internal error occurred. Please try again !");
             displayMenu();
+        }
+    }
+
+    private void deleteCustomerForm() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter the customer id clearly ");
+            System.out.println("Enter id");
+            String id = scanner.nextLine();
+            customerController.deleteCustomer(id);
+            System.out.println("Successfully Customer deleted");
+        } catch (CustomerNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Some internal code error , please try again");
+        }
+
+    }
+
+    private void customerUpdateForm() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please update the following details");
+            System.out.println("Enter your Id");
+            String id = scanner.nextLine();
+            System.out.println("Enter Name");
+            String name = scanner.nextLine();
+            System.out.println("Enter E-mail");
+            String email = scanner.nextLine();
+            System.out.println("Enter Password");
+            String password = scanner.nextLine();
+            Customer customer = new Customer();
+            customer.setId(id)
+                    .setName(name)
+                    .setEmail(email)
+                    .setPassword(password);
+            Customer updatedCustomer = customerController.updateCustomer(customer);
+            System.out.println("Updated Successfully");
+            displayCustomerDetails(updatedCustomer);
+        } catch (CustomerNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("some internal error occurred , please try again");
+            customerUpdateForm();
         }
     }
 
@@ -75,7 +122,6 @@ public class CustomerMenu extends Menu{
         String password = String.valueOf(passwordArray);*/
             System.out.println("Enter Password");
             String password = scanner.nextLine();
-            // System.out.println("Id : " + id + " , Name : " + name + " , E-mail :  " + email + ", Password :" + password);
             Customer customer = new Customer();
             customer.setId(id);
             customer.setName(name);
@@ -85,7 +131,7 @@ public class CustomerMenu extends Menu{
             Customer savedCustomer = customerController.save(customer);
             System.out.println("Customer Registration Successful");
             displayCustomerDetails(savedCustomer);
-        } catch (CustomerExitsException e) {
+        } catch (CustomerAlreadyExitsException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println("Some internal error occurred. Please try again !");
