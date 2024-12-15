@@ -1,6 +1,6 @@
 package com.JavaProject.foodiecliapp.service;
 
-import com.JavaProject.foodiecliapp.exceptions.CustomerExitsException;
+import com.JavaProject.foodiecliapp.exceptions.CustomerAlreadyExitsException;
 import com.JavaProject.foodiecliapp.exceptions.CustomerNotFoundException;
 import com.JavaProject.foodiecliapp.model.Customer;
 import com.JavaProject.foodiecliapp.repository.CustomerRepository;
@@ -17,10 +17,10 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public Customer save(Customer customer) throws CustomerExitsException {
+    public Customer save(Customer customer) throws CustomerAlreadyExitsException {
         Optional<Customer> customerById=this.customerRepository.findCustomerById(customer.getId());
         if(customerById.isPresent())
-            throw new CustomerExitsException("Id is already present: "+customer.getId()+" please try with different id ");
+            throw new CustomerAlreadyExitsException("Id is already present: "+customer.getId()+" please try with different id ");
 
         return this.customerRepository.save(customer);
     }
@@ -34,6 +34,22 @@ public class CustomerServiceImpl implements CustomerService{
         if(optionalCustomer.isEmpty())
             throw new CustomerNotFoundException("Customer not present with this: "+id+ "please try with correct id! fool");
         return optionalCustomer.get();
+    }
+
+    @Override
+    public Customer updateCustomer(Customer customerToBeUpdate) throws CustomerNotFoundException {
+        Optional<Customer> optionalCustomer = this.customerRepository.findCustomerById(customerToBeUpdate.getId());
+        if(optionalCustomer.isEmpty())
+            throw new CustomerNotFoundException("Customer Not Found with Id: "+customerToBeUpdate.getId());
+        return this.customerRepository.updateCustomer(customerToBeUpdate);
+    }
+
+    @Override
+    public void deleteCustomer(String id) throws CustomerNotFoundException {
+        Optional<Customer> optionalCustomer = this.customerRepository.findCustomerById(id);
+        if(optionalCustomer.isEmpty())
+            throw  new CustomerNotFoundException("Customer not found with id:" +id);
+        this.customerRepository.deleteCustomer(getCustomerById(id));
     }
 
 }
