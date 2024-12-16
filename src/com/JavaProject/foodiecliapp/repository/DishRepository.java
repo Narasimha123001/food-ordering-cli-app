@@ -1,7 +1,6 @@
 package com.JavaProject.foodiecliapp.repository;
 
 import com.JavaProject.foodiecliapp.model.Dish;
-import com.JavaProject.foodiecliapp.util.CSVReader;
 import com.JavaProject.foodiecliapp.util.Factory;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.Optional;
 
 public class DishRepository {
 
-    private  List<Dish> dishList;
+    private final List<Dish> dishList;
 
     public DishRepository() {
         this.dishList = Factory.getCsvReader().readDishesFromCsv();
@@ -33,10 +32,12 @@ public class DishRepository {
                 .filter(dish -> dish.getId().equals(dishToBeUpdated.getId()))
                 .findFirst()
                 .map(dish -> {
-                    dish.setId(dishToBeUpdated.getId());
-                    dish.setName(dishToBeUpdated.getName());
-                    dish.setDescription(dishToBeUpdated.getDescription());
-                    dish.setDescription(dishToBeUpdated.getDescription());
+                    dish.setId(dishToBeUpdated.getId())
+                            .setName(dishToBeUpdated.getName())
+                            .setDescription(dishToBeUpdated.getDescription())
+                            .setPrice(dishToBeUpdated.getPrice());
+
+
                     return dish;
                 });
         return optionalDish.orElse(null);
