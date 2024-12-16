@@ -19,32 +19,36 @@ public class Dish {
         return id;
     }
 
-    public void setId(String id) {
+    public Dish setId(String id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Dish setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Dish setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public Dish setPrice(double price) {
         this.price = price;
+        return this;
     }
 
     @Override
