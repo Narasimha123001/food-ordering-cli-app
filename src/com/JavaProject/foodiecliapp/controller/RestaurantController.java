@@ -15,7 +15,7 @@ public class RestaurantController {
     }
 
     public Restaurant save(Restaurant restaurant) throws RestaurantAlreadyExistsException {
-        return this.restaurantService.save(restaurant);
+        return this.restaurantService.saveRestaurant(restaurant);
     }
 
     public List<Restaurant> getRestaurantList(){
