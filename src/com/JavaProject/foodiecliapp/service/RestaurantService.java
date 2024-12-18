@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RestaurantService {
 
-    public Restaurant save(Restaurant restaurant) throws RestaurantAlreadyExistsException;
+    public Restaurant saveRestaurant(Restaurant restaurant)throws RestaurantAlreadyExistsException;
 
     //public Restaurant getRestaurantById(String id) throws RestaurantNotFound;
 
