@@ -8,9 +8,11 @@ import java.util.List;
 
 public interface RestaurantService {
 
-    public Restaurant saveRestaurant(Restaurant restaurant)throws RestaurantAlreadyExistsException;
+    public Restaurant saveRestaurant(Restaurant restaurant) throws  RestaurantAlreadyExistsException;
 
-    //public Restaurant getRestaurantById(String id) throws RestaurantNotFound;
+    public Restaurant getRestaurantById(String id) throws RestaurantNotFound;
 
-    public List<Restaurant>  getRestaurantList();
+    public List<Restaurant> getRestaurantList();
+
+    public Restaurant updateRestaurantDetails(Restaurant restaurant) throws  RestaurantNotFound;
 }
