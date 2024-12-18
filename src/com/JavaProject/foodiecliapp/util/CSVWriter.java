@@ -8,8 +8,8 @@ import java.util.List;
 
 public class CSVWriter {
     public void writeCustomerToCsv(List<Customer> customers, String customerFilePath) {
-        try(FileWriter writer = new FileWriter(customerFilePath)){
-            for(Customer customer: customers){
+        try (FileWriter writer = new FileWriter(customerFilePath)) {
+            for (Customer customer : customers) {
                 writer.write(String.format("%s,%s,%s,%s\n",
                         customer.getId(),
                         customer.getName(),
@@ -17,7 +17,7 @@ public class CSVWriter {
                         customer.getPassword()));
             }
         } catch (IOException e) {
-            System.out.println("Error occurs! while saving the customer in the file path"+customerFilePath);
+            System.out.println("Error occurs! while saving the customer in the file path" + customerFilePath);
             System.out.println(e.getMessage());
         }
     }
