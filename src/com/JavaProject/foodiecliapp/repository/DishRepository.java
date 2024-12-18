@@ -32,11 +32,9 @@ public class DishRepository {
                 .filter(dish -> dish.getId().equals(dishToBeUpdated.getId()))
                 .findFirst()
                 .map(dish -> {
-                    dish.setId(dishToBeUpdated.getId())
-                            .setName(dishToBeUpdated.getName())
-                            .setDescription(dishToBeUpdated.getDescription())
-                            .setPrice(dishToBeUpdated.getPrice());
-
+                    dish.setName(dishToBeUpdated.getName())
+                            .setPrice(dishToBeUpdated.getPrice())
+                            .setDescription(dishToBeUpdated.getDescription());
 
                     return dish;
                 });
@@ -45,5 +43,6 @@ public class DishRepository {
 
     public void deleteDish(Dish dish){
         this.dishList.remove(dish);
+
     }
 }
