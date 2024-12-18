@@ -15,29 +15,32 @@ public class RestaurantServiceImpl implements RestaurantService{
     public RestaurantServiceImpl(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
     }
-
-
+    @Override
+    public Restaurant saveRestaurant(Restaurant restaurant) throws RestaurantAlreadyExistsException {
+       Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findRestaurantById(restaurant.getId());
+       if(optionalRestaurant.isEmpty())
+           throw new RestaurantAlreadyExistsException("Restaurant already present");
+       return this.restaurantRepository.saveRestaurant(restaurant);
+    }
 
     @Override
-    public Restaurant save(Restaurant restaurant) throws RestaurantAlreadyExistsException {
-        Optional<Restaurant> restaurantById = this.restaurantRepository.findRestaurantById(restaurant.getId());
-        if(restaurantById.isPresent())
-           throw  new RestaurantAlreadyExistsException("The restaurant already exist on the id:"+restaurant.getId()+" please try with another id");
-    return this.restaurantRepository.saveRestaurant(restaurant);
+    public Restaurant getRestaurantById(String id) throws RestaurantNotFound {
+        Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findRestaurantById(id);
+        if(optionalRestaurant.isEmpty())
+            throw  new RestaurantNotFound("Resturant not found by this id:"+id);
+        return optionalRestaurant.get();
     }
 
     @Override
     public List<Restaurant> getRestaurantList() {
         return this.restaurantRepository.getRestaurantList();
     }
-/*
-    @Override
-    public Restaurant getRestaurantById(String id) throws RestaurantNotFound {
-        Optional<Restaurant> restaurantById = this.restaurantRepository.findRestaurantById(id);
-        if(restaurantById.isEmpty())
-            throw new RestaurantNotFound("The restaurant is not based on the id:"+id+" please try again with different id");
-        return this.getRestaurantById(id);
-    }
 
- */
+    @Override
+    public Restaurant updateRestaurantDetails(Restaurant restaurant) throws  RestaurantNotFound {
+        Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findRestaurantById(restaurant.getId());
+        if(optionalRestaurant.isEmpty())
+            throw new RestaurantNotFound("Restaurant Not found with this id :"+restaurant.getId());
+        return restaurantRepository.updateRestaurantDetails(restaurant);
+    }
 }
