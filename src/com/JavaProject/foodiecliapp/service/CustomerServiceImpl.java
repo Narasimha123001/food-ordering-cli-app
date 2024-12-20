@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public List<Customer> getAllCustomerList() {
-        return this.customerRepository.getAllCustomerList();
+        return this.customerRepository.getCustomersList();
     }
     public Customer getCustomerById(String id)throws CustomerNotFoundException{
         Optional<Customer> optionalCustomer = this.customerRepository.findCustomerById(id);
@@ -52,4 +52,11 @@ public class CustomerServiceImpl implements CustomerService{
         this.customerRepository.deleteCustomer(getCustomerById(id));
     }
 
+    @Override
+    public Customer validateCustomerLogin(String email, String password) throws CustomerNotFoundException {
+        Optional<Customer> optionalCustomer = this.customerRepository.findByEmailAndPassword(email,password);
+        if(optionalCustomer.isEmpty())
+            throw new CustomerNotFoundException("Invalid email and Password");
+        return optionalCustomer.get();
+    }
 }
