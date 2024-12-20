@@ -15,7 +15,7 @@ public class CustomerRepository {
         this.customerList = Factory.getCsvReader().readCustomersFromCsv();
     }
 
-    public List<Customer> getAllCustomerList(){
+    public List<Customer> getCustomersList(){
         return customerList;
     }
         //adding new Customer
@@ -38,7 +38,7 @@ public class CustomerRepository {
                     customer.setName(customerToBeUpdate.getName())
                             .setEmail(customerToBeUpdate.getEmail())
                             .setPassword(customerToBeUpdate.getPassword());
-                    Factory.getCsvWriter().writeCustomerToCsv(customerList, customerFilePath);
+                    //Factory.getCsvWriter().writeCustomerToCsv(customerList, customerFilePath);
                     return customer;
                 });
         return optionalCustomer.orElse(null);
@@ -46,5 +46,9 @@ public class CustomerRepository {
 
     public void deleteCustomer(Customer customer){
          this.customerList.remove(customer);
+    }
+
+    public Optional<Customer> findByEmailAndPassword(String email, String password){
+        return this.customerList.stream().filter(customer -> customer.getEmail().equalsIgnoreCase(email) && customer.getPassword().equals(password)).findFirst();
     }
 }
