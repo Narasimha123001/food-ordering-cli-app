@@ -15,4 +15,6 @@ public interface RestaurantService {
     public List<Restaurant> getRestaurantList();
 
     public Restaurant updateRestaurantDetails(Restaurant restaurant) throws  RestaurantNotFound;
+
+    public void deleteRestaurant(String id) throws RestaurantNotFound;
 }
