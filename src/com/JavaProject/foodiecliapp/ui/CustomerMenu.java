@@ -40,13 +40,14 @@ public class CustomerMenu extends Menu{
                 int input = scanner.nextInt();
                 switch (input) {
                     case 1 -> customerRegisterForm();
+                    case 2 -> customerLoginForm();
+                    case 3 -> customerSearchForm();
                     case 4 -> displayAllCustomers();
                     case 5 -> customerUpdateForm();
                     case 6 -> deleteCustomerForm();
-                   /* case 2 -> customerLoginForm();
-                    case 3 -> customerSearchForm();
 
-                    */
+
+
                     case 7 -> {
                         System.out.println("Thank you , See you again !");
                         super.displayMenu();
@@ -57,6 +58,26 @@ public class CustomerMenu extends Menu{
             }
         } catch (Exception e) {
             System.out.println("Some internal error occurred. Please try again !");
+            displayMenu();
+        }
+    }
+
+    private void customerSearchForm() {
+    }
+
+    private void customerLoginForm() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter the email");
+            String email = scanner.nextLine();
+            System.out.println("Enter the password");
+            String password = scanner.nextLine();
+
+            Customer existingCustomer = Factory.customerController().validateCustomerLogin(email,password);
+            System.out.println("Login Successfully");
+            System.out.println("Welcome Mr : "+existingCustomer.getName());
+        } catch (CustomerNotFoundException e) {
+            System.out.println(e.getMessage());
             displayMenu();
         }
     }
