@@ -31,4 +31,7 @@ public class CustomerController {
     public void deleteCustomer(String id) throws CustomerNotFoundException{
         this.customerService.deleteCustomer(id);
     }
+    public Customer validateCustomerLogin(String email, String password) throws CustomerNotFoundException{
+        return this.customerService.validateCustomerLogin(email,password);
+    }
 }
