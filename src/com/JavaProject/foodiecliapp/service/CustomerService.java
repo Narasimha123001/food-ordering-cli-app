@@ -17,4 +17,6 @@ public interface CustomerService {
     public Customer updateCustomer(Customer customerToBeUpdate) throws CustomerNotFoundException;
 
     public void deleteCustomer(String id) throws CustomerNotFoundException;
+
+    public Customer validateCustomerLogin(String email , String password) throws CustomerNotFoundException;
 }
