@@ -27,7 +27,7 @@ public class RestaurantServiceImpl implements RestaurantService{
     public Restaurant getRestaurantById(String id) throws RestaurantNotFound {
         Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findRestaurantById(id);
         if(optionalRestaurant.isEmpty())
-            throw  new RestaurantNotFound("Resturant not found by this id:"+id);
+            throw  new RestaurantNotFound("Restaurant not found by this id:"+id);
         return optionalRestaurant.get();
     }
 
@@ -42,5 +42,13 @@ public class RestaurantServiceImpl implements RestaurantService{
         if(optionalRestaurant.isEmpty())
             throw new RestaurantNotFound("Restaurant Not found with this id :"+restaurant.getId());
         return restaurantRepository.updateRestaurantDetails(restaurant);
+    }
+
+    @Override
+    public void deleteRestaurant(String id) throws RestaurantNotFound {
+        Optional<Restaurant> restaurantOptional = this .restaurantRepository.findRestaurantById(id);
+        if(restaurantOptional.isEmpty())
+            throw new RestaurantNotFound("Restaurant Not found by id"+id);
+        this.restaurantRepository.deleteRestaurant(getRestaurantById(id));
     }
 }
