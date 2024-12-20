@@ -28,4 +28,7 @@ public class RestaurantController {
     public Restaurant getRestaurantById(String id) throws RestaurantNotFound {
         return this.restaurantService.getRestaurantById(id);
     }
+    public void deleteRestaurant(String id) throws RestaurantNotFound {
+        this.restaurantService.deleteRestaurant(id);
+    }
 }
