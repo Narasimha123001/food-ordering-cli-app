@@ -56,6 +56,16 @@ public class RestaurantsMenu extends Menu {
     }
 
     private void restaurantDeleteForm() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter the Restaurant Id");
+            String id = scanner.nextLine();
+            Factory.restaurantController().deleteRestaurant(id);
+            System.out.println("Restaurant delete successful");
+            restaurantController.getRestaurantList();
+        } catch (RestaurantNotFound e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void restaurantUpdateForm() {
