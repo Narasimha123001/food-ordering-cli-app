@@ -10,7 +10,9 @@ import java.util.Optional;
 
 public class CustomerServiceImpl implements CustomerService{
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+
+    private Customer currentLoggedInCustomer;
 
     public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -58,5 +60,15 @@ public class CustomerServiceImpl implements CustomerService{
         if(optionalCustomer.isEmpty())
             throw new CustomerNotFoundException("Invalid email and Password");
         return optionalCustomer.get();
+    }
+
+    @Override
+    public void setCurrentLoggedInCustomer(Customer customer) {
+        this.currentLoggedInCustomer = customer;
+    }
+
+    @Override
+    public Customer getLoggedCustomer() {
+        return currentLoggedInCustomer;
     }
 }
