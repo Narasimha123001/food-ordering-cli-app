@@ -109,7 +109,7 @@ public class RestaurantsMenu extends Menu {
         }
     }
 
-    private void displayRestaurants() {
+    void displayRestaurants() {
         List<Restaurant> restaurantList = Factory.restaurantService().getRestaurantList();
         String dashesLine = new String(new char[150]).replace('\0', '-');
         System.out.println("Restaurant");
