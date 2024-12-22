@@ -19,4 +19,7 @@ public interface CustomerService {
     public void deleteCustomer(String id) throws CustomerNotFoundException;
 
     public Customer validateCustomerLogin(String email , String password) throws CustomerNotFoundException;
+
+    public void setCurrentLoggedInCustomer(Customer customer);
+    public Customer getLoggedCustomer();
 }
