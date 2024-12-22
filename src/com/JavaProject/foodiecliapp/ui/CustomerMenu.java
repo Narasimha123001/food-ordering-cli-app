@@ -74,7 +74,7 @@ public class CustomerMenu extends Menu{
         }
     }
 
-    private void customerLoginForm() {
+    void customerLoginForm() {
         try{
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter the email");
