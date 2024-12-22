@@ -63,6 +63,15 @@ public class CustomerMenu extends Menu{
     }
 
     private void customerSearchForm() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter the Customer id:");
+            String id = scanner.nextLine();
+            Customer customerById = Factory.customerController().getCustomerById(id);
+            displayCustomerDetails(customerById);
+        } catch (CustomerNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void customerLoginForm() {
