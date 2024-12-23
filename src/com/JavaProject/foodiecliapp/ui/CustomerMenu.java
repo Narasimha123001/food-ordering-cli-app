@@ -4,18 +4,20 @@ import com.JavaProject.foodiecliapp.controller.CustomerController;
 import com.JavaProject.foodiecliapp.exceptions.CustomerAlreadyExitsException;
 import com.JavaProject.foodiecliapp.exceptions.CustomerNotFoundException;
 import com.JavaProject.foodiecliapp.model.Customer;
-import com.JavaProject.foodiecliapp.util.Factory;
+
 
 
 import java.util.List;
 import java.util.Scanner;
+
+import static com.JavaProject.foodiecliapp.util.Factory.customerController;
 
 public class CustomerMenu extends Menu{
 
     private final CustomerController customerController;
 
     public CustomerMenu() {
-        this.customerController = Factory.customerController();
+        this.customerController = customerController();
     }
 
     @Override
@@ -45,9 +47,6 @@ public class CustomerMenu extends Menu{
                     case 4 -> displayAllCustomers();
                     case 5 -> customerUpdateForm();
                     case 6 -> deleteCustomerForm();
-
-
-
                     case 7 -> {
                         System.out.println("Thank you , See you again !");
                         super.displayMenu();
@@ -67,10 +66,11 @@ public class CustomerMenu extends Menu{
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter the Customer id:");
             String id = scanner.nextLine();
-            Customer customerById = Factory.customerController().getCustomerById(id);
+            Customer customerById = customerController().getCustomerById(id);
             displayCustomerDetails(customerById);
         } catch (CustomerNotFoundException e) {
             System.out.println(e.getMessage());
+            displayMenu();
         }
     }
 
@@ -82,7 +82,7 @@ public class CustomerMenu extends Menu{
             System.out.println("Enter the password");
             String password = scanner.nextLine();
 
-            Customer existingCustomer = Factory.customerController().validateCustomerLogin(email,password);
+            Customer existingCustomer = customerController().validateCustomerLogin(email,password);
             System.out.println("Login Successfully");
             System.out.println("Welcome Mr : "+existingCustomer.getName());
         } catch (CustomerNotFoundException e) {
