@@ -9,19 +9,19 @@ import java.util.Optional;
 public class CustomerRepository {
 
     private final List<Customer> customerList;
-    private final String customerFilePath ="C:\\Users\\naras\\OneDrive\\Desktop\\Full stack java\\JavaWorkSpace\\food-ordering-cli-app\\data\\customers.csv";
+   // private final String customerFilePath ="C:\\Users\\naras\\OneDrive\\Desktop\\Full stack java\\JavaWorkSpace\\food-ordering-cli-app\\data\\customers.csv";
 
     public CustomerRepository() {
-        this.customerList = Factory.getCsvReader().readCustomersFromCsv();
+        this.customerList = Factory.csvReader().readCustomersFromCsv();
     }
 
     public List<Customer> getCustomersList(){
-        return customerList;
+        return this.customerList;
     }
         //adding new Customer
     public Customer save(Customer customer){
         this.customerList.add(customer);
-        Factory.getCsvWriter().writeCustomerToCsv(customerList ,customerFilePath );
+        //Factory.getCsvWriter().writeCustomerToCsv(customerList ,customerFilePath );
         return customer;
     }
 
