@@ -21,5 +21,5 @@ public interface CustomerService {
     public Customer validateCustomerLogin(String email , String password) throws CustomerNotFoundException;
 
     public void setCurrentLoggedInCustomer(Customer customer);
-    public Customer getLoggedCustomer();
+    public Customer getCurrentLoggedInCustomer();
 }
