@@ -11,7 +11,7 @@ public class DishRepository {
     private final List<Dish> dishList;
 
     public DishRepository() {
-        this.dishList = Factory.getCsvReader().readDishesFromCsv();
+        this.dishList = Factory.csvReader().readDishesFromCsv();
     }
 
     public Dish saveDish(Dish dish){
