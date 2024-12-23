@@ -75,10 +75,12 @@ public class DishesMenu extends Menu{
             System.out.println("Please enter the dishes id ");
             String id = scanner.nextLine();
             dishController.deleteDish(id);
+            System.out.println("Dish Delete Successfully");
         } catch (DishesNotFoundException e) {
             System.out.println(e.getMessage());
         }catch (Exception e){
             System.out.println("Some internal error Occurred !.please try again");
+            displayMenu();
         }
     }
 
@@ -102,12 +104,14 @@ public class DishesMenu extends Menu{
                     .setDescription(description)
                     .setPrice(price);
 
-            dishController.updateDish(dish);
-            displayDish(dish);
+            Dish upadteDish = dishController.updateDish(dish);
+            System.out.println("Dish Updated Successfully");
+            displayDish(upadteDish);
         } catch (DishesNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (Exception e){
             System.out.println("Some internal error occurred ! please try again");
+            dishUpdateForm();
         }
     }
 
@@ -120,8 +124,6 @@ public class DishesMenu extends Menu{
             displayDish(dish);
         } catch (DishesNotFoundException e){
             System.out.println(e.getMessage());
-        } catch (Exception e){
-            System.out.println("Some internal error occurred !.please try again ");
         }
     }
 
