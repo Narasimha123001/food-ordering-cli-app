@@ -68,7 +68,7 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public Customer getLoggedCustomer() {
-        return currentLoggedInCustomer;
+    public Customer getCurrentLoggedInCustomer() {
+        return this.currentLoggedInCustomer;
     }
 }
