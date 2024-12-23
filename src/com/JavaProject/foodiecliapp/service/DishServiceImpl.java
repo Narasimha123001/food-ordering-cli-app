@@ -20,7 +20,6 @@ public class DishServiceImpl implements DishService {
     @Override
     public Dish save(Dish dish) throws DishAlreadyExistsException {
         Optional<Dish> optionalDish = this.dishRepository.getDishById(dish.getId());
-
         if (optionalDish.isPresent())
             throw new DishAlreadyExistsException("The dish is already is present on this id"+dish.getId()+" Please try again with another id");
 
