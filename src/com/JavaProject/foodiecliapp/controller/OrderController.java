@@ -22,7 +22,7 @@ public class OrderController {
         return this.orderService.getOrderList();
     }
 
-    public Order findOrderById(String id) throws OrderNotFoundException{
-        return this.orderService.findOrderById(id);
+    public Order getOrderById(String id) throws OrderNotFoundException{
+        return this.orderService.getOrderById(id);
     }
 }
