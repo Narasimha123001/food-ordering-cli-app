@@ -1,9 +1,12 @@
 package com.JavaProject.foodiecliapp.ui;
 
 import com.JavaProject.foodiecliapp.controller.RestaurantController;
+import com.JavaProject.foodiecliapp.exceptions.DishesNotFoundException;
 import com.JavaProject.foodiecliapp.exceptions.RestaurantAlreadyExistsException;
 import com.JavaProject.foodiecliapp.exceptions.RestaurantNotFound;
+import com.JavaProject.foodiecliapp.model.Dish;
 import com.JavaProject.foodiecliapp.model.Restaurant;
+import com.JavaProject.foodiecliapp.service.RestaurantService;
 import com.JavaProject.foodiecliapp.util.Factory;
 
 import java.util.Arrays;
@@ -47,6 +50,7 @@ public class RestaurantsMenu extends Menu {
                         System.out.println("thank you see you again!");
                         super.displayMenu();
                     }
+                    default -> System.out.println("Invalid Input. Please enter the valid input from(1-7)");
                 }
             }
 
@@ -65,6 +69,7 @@ public class RestaurantsMenu extends Menu {
             restaurantController.getRestaurantList();
         } catch (RestaurantNotFound e) {
             System.out.println(e.getMessage());
+            displayMenu();
         }
     }
 
@@ -106,6 +111,7 @@ public class RestaurantsMenu extends Menu {
             displayRestaurant(restaurant);
         } catch (RestaurantNotFound e) {
             System.out.println(e.getMessage());
+            displayMenu();
         }
     }
 
@@ -147,6 +153,7 @@ public class RestaurantsMenu extends Menu {
             System.out.println(e.getMessage());
         } catch (Exception e){
             System.out.println("some internal code error occurred! please try again");
+            newRestaurantForm();
         }
     }
     public void displayRestaurant(Restaurant restaurant) {
@@ -154,7 +161,17 @@ public class RestaurantsMenu extends Menu {
         System.out.printf("%-10s %-30s %-80s %-30s\n", "Id", "Name", "Address", "Menu Items");
         printDashLine();
         System.out.printf("%-10s %-30s %-80s %-30s\n", restaurant.getId(), restaurant.getName(), restaurant.getAddress(), String.join(":", restaurant.getMenu()));
+    }
 
+    public void displayMenuItems(String restaurantId) throws RestaurantNotFound, DishesNotFoundException {
+        displayMenuHeader("Dishes Menu Details");
+        System.out.printf("%-10s %-30s %-80s %-10s\n", "Id", "Name", "Description", "Price");
+        printDashLine();
+        RestaurantService restaurantService = Factory.restaurantService();
+        List<Dish> dishItems = restaurantService.getDishItems(restaurantId);
+        for(Dish dish : dishItems){
+            System.out.printf("%-10s %-30s %-80s %-10s\n", dish.getId(), dish.getName(), dish.getDescription(), String.format("$%.2f", dish.getPrice()));
+        }
     }
 }
 
