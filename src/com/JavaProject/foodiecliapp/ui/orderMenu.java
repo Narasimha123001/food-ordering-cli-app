@@ -171,6 +171,8 @@ public class orderMenu extends Menu{
                     order.setPrices(orderPrice);
                     order.setOrderDate(orderDate);
 
+
+
             Order placedOrder = orderController.save(order);
             if(placedOrder != null)
                 System.out.println("Order Placed Successfully with the following details");
