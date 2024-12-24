@@ -11,7 +11,7 @@ public class RestaurantRepository {
     private final List<Restaurant> restaurantList;
 
     public RestaurantRepository() {
-        this.restaurantList = Factory.getCsvReader().readRestaurantsFromCsv();
+        this.restaurantList = Factory.csvReader().readRestaurantsFromCsv();
     }
 
     public List<Restaurant> getRestaurantList() {
