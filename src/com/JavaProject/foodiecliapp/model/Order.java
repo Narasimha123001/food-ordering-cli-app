@@ -1,6 +1,6 @@
 package com.JavaProject.foodiecliapp.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +10,7 @@ public class Order {
     private Restaurant restaurant;
     private List<Dish> dishes;
     private  double prices;
-    private Date orderDate;
+    private LocalDate orderDate;
 
     public Order() {
     }
@@ -55,11 +55,11 @@ public class Order {
         this.prices = prices;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
