@@ -33,6 +33,10 @@ To install and run the Foodie CLI Application, follow these steps:
    java -cp bin Main
    ```
 
+5.Class Diagram
+
+![image](https://github.com/user-attachments/assets/c0a02cb9-ad53-42a7-b581-657cca380593)
+
 ## Usage
 Once the application is running, follow the on-screen prompts to navigate through the menu.
 
