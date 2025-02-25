@@ -46,9 +46,6 @@ Once the application is running, follow the on-screen prompts to navigate throug
 4. **Place an Order**: Choose dishes and place an order.
 5. **View Order History**: Access your past orders.
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
 ## Contact
 For any questions, feedback, or support, feel free to reach out:
 
